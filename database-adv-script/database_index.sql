@@ -1,29 +1,26 @@
--- Index for the primary key of the users table
-CREATE INDEX idx_users_id ON users (id);
+EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
+# Indexing for Performance – ALX Airbnb Database
 
--- Index on the user_id foreign key in the bookings table
-CREATE INDEX idx_bookings_user_id ON bookings (user_id);
+## Objective
+Improve query performance by creating indexes on high-usage columns in the database.
 
--- Index on the property_id foreign key in the bookings table
-CREATE INDEX idx_bookings_property_id ON bookings (property_id);
+## Indexes Created
 
--- Index for the primary key of the properties table
-CREATE INDEX idx_properties_id ON properties (id);
+### 1. `bookings(user_id)`
+Used in JOINs and WHERE clauses to filter bookings by user.
 
--- Example of measuring query performance BEFORE adding indexes
-EXPLAIN SELECT * FROM bookings WHERE user_id = 123;
-EXPLAIN SELECT p.* FROM properties p JOIN bookings b ON p.id = b.property_id WHERE b.user_id = 456;
+### 2. `bookings(property_id)`
+Used in JOINs to link bookings to properties.
 
--- Creating indexes (already included above)
--- CREATE INDEX idx_bookings_start_date ON bookings (start_date);
--- CREATE INDEX idx_bookings_end_date ON bookings (end_date);
+### 3. `bookings(start_date)`
+Helps filter bookings by date range.
 
--- Example of measuring query performance AFTER adding indexes
-EXPLAIN SELECT * FROM bookings WHERE user_id = 123;
-EXPLAIN SELECT p.* FROM properties p JOIN bookings b ON p.id = b.property_id WHERE b.user_id = 456;
+### 4. `properties(name)`
+Used in ORDER BY and search queries.
 
--- If you are using PostgreSQL, you can use ANALYZE as well
--- ANALYZE bookings;
--- EXPLAIN SELECT * FROM bookings WHERE user_id = 123;
--- ANALYZE properties;
--- EXPLAIN SELECT p.* FROM properties p JOIN bookings b ON p.id = b.property_id WHERE b.user_id = 456;
+## Performance Test
+
+### Query Before Index
+```sql
+EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
+EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
