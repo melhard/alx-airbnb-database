@@ -8,13 +8,10 @@ SELECT
 FROM bookings
 INNER JOIN users ON bookings.user_id = users.id;
 
-SELECT
-    properties.id AS property_id,
-    properties.name AS property_name,
-    reviews.id AS review_id,
-    reviews.comment
+SELECT properties.*, reviews.*
 FROM properties
-LEFT JOIN reviews ON properties.id = reviews.property_id;
+LEFT JOIN reviews ON properties.id = reviews.property_id
+ORDER BY properties.id; -- Or another relevant column
 
 -- FULL OUTER JOIN: users and bookings
 SELECT
