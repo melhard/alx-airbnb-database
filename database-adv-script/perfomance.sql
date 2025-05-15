@@ -1,22 +1,4 @@
--- 🔴 Initial (Unoptimized) Query
--- Retrieves bookings with full user, property, and payment details
-SELECT
-    bookings.id AS booking_id,
-    users.id AS user_id,
-    users.name AS user_name,
-    properties.id AS property_id,
-    properties.name AS property_name,
-    payments.id AS payment_id,
-    payments.amount,
-    bookings.start_date,
-    bookings.end_date
-FROM bookings
-JOIN users ON bookings.user_id = users.id
-JOIN properties ON bookings.property_id = properties.id
-JOIN payments ON bookings.payment_id = payments.id;
-
--- ✅ Optimized (Refactored) Query
--- Selects only needed fields and uses table aliases for clarity
+-- Filtered query with WHERE and AND
 SELECT
     b.id AS booking_id,
     u.name AS user_name,
@@ -27,4 +9,6 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-JOIN payments pay ON b.payment_id = pay.id;
+JOIN payments pay ON b.payment_id = pay.id
+WHERE b.start_date >= '2024-01-01'
+  AND pay.amount > 100;
