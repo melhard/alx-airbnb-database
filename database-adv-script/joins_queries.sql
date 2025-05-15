@@ -8,17 +8,6 @@ SELECT
 FROM bookings
 INNER JOIN users ON bookings.user_id = users.id;
 
--- LEFT JOIN: properties and reviews
-SELECT COUNT(*) FROM properties;
-SELECT COUNT(DISTINCT property_id) FROM reviews;
-SELECT COUNT(DISTINCT properties.id)
-FROM properties
-LEFT JOIN reviews ON properties.id = reviews.property_id;
-SELECT properties.id, properties.name
-FROM properties
-LEFT JOIN reviews ON properties.id = reviews.property_id
-WHERE reviews.id IS NULL;
--- LEFT JOIN: properties and reviews
 SELECT
     properties.id AS property_id,
     properties.name AS property_name,
