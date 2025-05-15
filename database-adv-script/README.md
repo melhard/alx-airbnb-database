@@ -36,7 +36,6 @@ Use SQL aggregation and window functions to analyze data in the Airbnb clone dat
 
 ### 1. Total Bookings by User
 Counts the number of bookings made by each user using `COUNT()` and `GROUP BY`.
-
-### 2. Ranking Properties by Bookings
-Ranks properties based on how many bookings they received using a window function (`RANK()`).
+### 2. Ranking Properties by Bookings (ROW_NUMBER)
+Ranks properties based on number of bookings using `ROW_NUMBER()` for unique ranking.
 
