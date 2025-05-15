@@ -1,3 +1,4 @@
+EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
 -- Index for the primary key of the users table
 CREATE INDEX idx_users_id ON users (id);
 
@@ -23,3 +24,4 @@ CREATE INDEX idx_properties_id ON properties (id);
 -- Measurement of query performance AFTER adding indexes (same queries):
 -- EXPLAIN SELECT * FROM bookings WHERE user_id = 123;
 -- EXPLAIN SELECT p.* FROM properties p JOIN bookings b ON p.id = b.property_id WHERE b.user_id = 456;
+EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
