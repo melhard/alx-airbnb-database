@@ -16,8 +16,6 @@ SELECT
 FROM properties
 LEFT JOIN reviews ON properties.id = reviews.property_id;
 
-
-
 -- FULL OUTER JOIN: users and bookings
 SELECT
     users.id AS user_id,
