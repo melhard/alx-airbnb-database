@@ -1,24 +1,16 @@
-# Indexing for Performance – ALX Airbnb Database
+-- Index for the primary key of the users table (usually created automatically, but good to be explicit)
+CREATE INDEX idx_users_id ON users (id);
 
-## Objective
-Improve query performance by creating indexes on high-usage columns in the database.
+-- Index on the user_id foreign key in the bookings table
+CREATE INDEX idx_bookings_user_id ON bookings (user_id);
 
-## Indexes Created
+-- Index on the property_id foreign key in the bookings table
+CREATE INDEX idx_bookings_property_id ON bookings (property_id);
 
-### 1. `bookings(user_id)`
-Used in JOINs and WHERE clauses to filter bookings by user.
+-- Index for the primary key of the properties table
+CREATE INDEX idx_properties_id ON properties (id);
 
-### 2. `bookings(property_id)`
-Used in JOINs to link bookings to properties.
-
-### 3. `bookings(start_date)`
-Helps filter bookings by date range.
-
-### 4. `properties(name)`
-Used in ORDER BY and search queries.
-
-## Performance Test
-
-### Query Before Index
-```sql
-EXPLAIN SELECT * FROM bookings WHERE user_id = 42;
+-- Consider adding indexes on other frequently queried columns in bookings,
+-- for example, if you often filter by booking start or end dates:
+-- CREATE INDEX idx_bookings_start_date ON bookings (start_date);
+-- CREATE INDEX idx_bookings_end_date ON bookings (end_date);
