@@ -13,3 +13,16 @@ Shows all properties and their reviews. Properties with no reviews are also incl
 
 ### 3. FULL OUTER JOIN – Users and Bookings
 Returns all users and all bookings. Includes users without bookings and bookings not linked to users.
+
+# SQL Subqueries – ALX Airbnb Database
+
+## Objective
+Practice writing both correlated and non-correlated subqueries.
+
+## Queries
+
+### 1. Non-Correlated Subquery – Properties with High Ratings
+Retrieves properties where the average review rating is greater than 4.0. The subquery runs independently using GROUP BY and HAVING.
+
+### 2. Correlated Subquery – Users with More Than 3 Bookings
+Retrieves users who have made more than 3 bookings. The subquery is correlated with the outer query as it references each user’s ID.
